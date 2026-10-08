@@ -1,0 +1,7 @@
+com\ecom\backend\controller\ProductController.class
+com\ecom\backend\repository\ProductRepository.class
+com\ecom\backend\repository\CategoryRepository.class
+com\ecom\backend\controller\CategoryController.class
+com\ecom\backend\model\Category.class
+com\ecom\backend\BackendApplication.class
+com\ecom\backend\model\Product.class

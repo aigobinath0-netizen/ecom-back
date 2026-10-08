@@ -1,0 +1,13 @@
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\BackendApplication.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\controller\ProductController.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\controller\ReviewController.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Product.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Category.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\repository\ProductRepository.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Review.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\repository\CategoryRepository.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Story.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\controller\StoryController.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\repository\ReviewRepository.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\repository\StoryRepository.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\controller\CategoryController.java
