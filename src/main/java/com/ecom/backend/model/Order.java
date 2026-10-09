@@ -26,5 +26,6 @@ public class Order {
 
     private String shipping;
 
+    @com.fasterxml.jackson.annotation.JsonProperty("isPaid")
     private boolean isPaid;
 }
