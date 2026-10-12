@@ -22,4 +22,5 @@ public class Category {
     private String bannerType;
     private String bannerHeadline;
     private Integer startingPrice;
+    private String section; // "phone_cover", "temper_glass", "laptop_skin"
 }
