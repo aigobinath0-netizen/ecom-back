@@ -22,7 +22,10 @@ public class StoryController {
 
     @PostMapping
     public Story createStory(@RequestBody Story story) {
-        if (story.getImages() != null && !story.getImages().isEmpty()) {
+        if (story.getImages() == null) {
+            story.setImages(new java.util.ArrayList<>());
+        }
+        if (!story.getImages().isEmpty()) {
             if (story.getImg() == null || story.getImg().isEmpty()) {
                 story.setImg(story.getImages().get(0));
             }
@@ -33,25 +36,41 @@ public class StoryController {
     }
 
     @PutMapping("/{id}")
-    public Story updateStory(@PathVariable Long id, @RequestBody Story updated) {
-        return storyRepository.findById(id).map(story -> {
+    public Story updateStory(@PathVariable String id, @RequestBody Story updated) {
+        Long numericId = parseLongId(id);
+        if (numericId == null) {
+            return storyRepository.save(updated);
+        }
+        return storyRepository.findById(numericId).map(story -> {
             if (updated.getName() != null) story.setName(updated.getName());
             if (updated.getImg() != null) story.setImg(updated.getImg());
             if (updated.getImages() != null) story.setImages(updated.getImages());
             return storyRepository.save(story);
         }).orElseGet(() -> {
-            updated.setId(id);
+            updated.setId(numericId);
             return storyRepository.save(updated);
         });
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStory(@PathVariable Long id) {
-        storyRepository.deleteById(id);
+    public void deleteStory(@PathVariable String id) {
+        Long numericId = parseLongId(id);
+        if (numericId != null) {
+            storyRepository.deleteById(numericId);
+        }
     }
 
     @PostMapping("/delete/{id}")
-    public void deleteStoryPost(@PathVariable Long id) {
-        storyRepository.deleteById(id);
+    public void deleteStoryPost(@PathVariable String id) {
+        deleteStory(id);
+    }
+
+    private Long parseLongId(String id) {
+        if (id == null) return null;
+        try {
+            return Long.parseLong(id.replaceAll("[^0-9]", ""));
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
