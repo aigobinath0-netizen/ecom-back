@@ -31,13 +31,18 @@ public class ReviewController {
             return reviewRepository.save(updated);
         }
         return reviewRepository.findById(numericId).map(review -> {
-            if (updated.getAuthor() != null) review.setAuthor(updated.getAuthor());
-            if (updated.getTitle() != null) review.setTitle(updated.getTitle());
-            if (updated.getText() != null) review.setText(updated.getText());
+            if (updated.getAuthor() != null)
+                review.setAuthor(updated.getAuthor());
+            if (updated.getTitle() != null)
+                review.setTitle(updated.getTitle());
+            if (updated.getText() != null)
+                review.setText(updated.getText());
             review.setRating(updated.getRating());
-            if (updated.getProduct() != null) review.setProduct(updated.getProduct());
+            if (updated.getProduct() != null)
+                review.setProduct(updated.getProduct());
             review.setVerified(updated.isVerified());
-            if (updated.getImg() != null) review.setImg(updated.getImg());
+            if (updated.getImg() != null)
+                review.setImg(updated.getImg());
             return reviewRepository.save(review);
         }).orElseGet(() -> {
             updated.setId(numericId);
@@ -59,7 +64,8 @@ public class ReviewController {
     }
 
     private Long parseLongId(String id) {
-        if (id == null) return null;
+        if (id == null)
+            return null;
         try {
             return Long.parseLong(id.replaceAll("[^0-9]", ""));
         } catch (Exception e) {
