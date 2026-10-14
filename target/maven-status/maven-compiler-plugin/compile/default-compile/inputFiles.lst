@@ -8,6 +8,7 @@ D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Order.java
 D:\Ecom Web\backend\src\main\java\com\ecom\backend\controller\OrderController.java
 D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Review.java
 D:\Ecom Web\backend\src\main\java\com\ecom\backend\repository\CategoryRepository.java
+D:\Ecom Web\backend\src\main\java\com\ecom\backend\WebConfig.java
 D:\Ecom Web\backend\src\main\java\com\ecom\backend\model\Story.java
 D:\Ecom Web\backend\src\main\java\com\ecom\backend\controller\StoryController.java
 D:\Ecom Web\backend\src\main\java\com\ecom\backend\repository\OrderRepository.java
