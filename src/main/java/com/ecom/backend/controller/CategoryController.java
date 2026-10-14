@@ -39,6 +39,9 @@ public class CategoryController {
             if (c.getHasTwoPhotos() == null) {
                 c.setHasTwoPhotos(false);
             }
+            if (c.getHasGoldPlate() == null) {
+                c.setHasGoldPlate(false);
+            }
         }
         if (section != null && !section.trim().isEmpty() && !"all".equalsIgnoreCase(section)) {
             return all.stream()
@@ -67,6 +70,7 @@ public class CategoryController {
             if (category.getStartingPrice() != null) existing.setStartingPrice(category.getStartingPrice());
             if (category.getSection() != null) existing.setSection(category.getSection());
             if (category.getHasTwoPhotos() != null) existing.setHasTwoPhotos(category.getHasTwoPhotos());
+            if (category.getHasGoldPlate() != null) existing.setHasGoldPlate(category.getHasGoldPlate());
             return categoryRepository.save(existing);
         }).orElseGet(() -> categoryRepository.save(category));
     }
@@ -86,6 +90,7 @@ public class CategoryController {
             if (updated.getStartingPrice() != null) existing.setStartingPrice(updated.getStartingPrice());
             if (updated.getSection() != null) existing.setSection(updated.getSection());
             if (updated.getHasTwoPhotos() != null) existing.setHasTwoPhotos(updated.getHasTwoPhotos());
+            if (updated.getHasGoldPlate() != null) existing.setHasGoldPlate(updated.getHasGoldPlate());
             return categoryRepository.save(existing);
         }).orElseGet(() -> {
             updated.setId(id);

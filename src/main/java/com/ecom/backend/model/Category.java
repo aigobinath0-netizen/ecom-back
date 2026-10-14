@@ -34,4 +34,16 @@ public class Category {
     public void setHasTwoPhotos(Boolean hasTwoPhotos) {
         this.hasTwoPhotos = hasTwoPhotos != null ? hasTwoPhotos : false;
     }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("hasGoldPlate")
+    @Column(name = "has_gold_plate")
+    private Boolean hasGoldPlate = false;
+
+    public Boolean getHasGoldPlate() {
+        return hasGoldPlate != null ? hasGoldPlate : false;
+    }
+
+    public void setHasGoldPlate(Boolean hasGoldPlate) {
+        this.hasGoldPlate = hasGoldPlate != null ? hasGoldPlate : false;
+    }
 }
