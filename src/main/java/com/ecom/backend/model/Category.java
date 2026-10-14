@@ -23,5 +23,15 @@ public class Category {
     private String bannerHeadline;
     private Integer startingPrice;
     private String section; // "phone_cover", "temper_glass", "laptop_skin"
+    @com.fasterxml.jackson.annotation.JsonProperty("hasTwoPhotos")
+    @Column(name = "has_two_photos")
     private Boolean hasTwoPhotos = false;
+
+    public Boolean getHasTwoPhotos() {
+        return hasTwoPhotos != null ? hasTwoPhotos : false;
+    }
+
+    public void setHasTwoPhotos(Boolean hasTwoPhotos) {
+        this.hasTwoPhotos = hasTwoPhotos != null ? hasTwoPhotos : false;
+    }
 }

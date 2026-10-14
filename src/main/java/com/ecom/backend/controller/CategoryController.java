@@ -36,6 +36,9 @@ public class CategoryController {
             if (c.getSection() == null || c.getSection().trim().isEmpty()) {
                 c.setSection(inferSection(c));
             }
+            if (c.getHasTwoPhotos() == null) {
+                c.setHasTwoPhotos(false);
+            }
         }
         if (section != null && !section.trim().isEmpty() && !"all".equalsIgnoreCase(section)) {
             return all.stream()
