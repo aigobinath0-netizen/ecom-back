@@ -23,4 +23,5 @@ public class Category {
     private String bannerHeadline;
     private Integer startingPrice;
     private String section; // "phone_cover", "temper_glass", "laptop_skin"
+    private Boolean hasTwoPhotos = false;
 }

@@ -63,6 +63,7 @@ public class CategoryController {
             if (category.getBannerHeadline() != null) existing.setBannerHeadline(category.getBannerHeadline());
             if (category.getStartingPrice() != null) existing.setStartingPrice(category.getStartingPrice());
             if (category.getSection() != null) existing.setSection(category.getSection());
+            if (category.getHasTwoPhotos() != null) existing.setHasTwoPhotos(category.getHasTwoPhotos());
             return categoryRepository.save(existing);
         }).orElseGet(() -> categoryRepository.save(category));
     }
@@ -81,6 +82,7 @@ public class CategoryController {
             if (updated.getBannerHeadline() != null) existing.setBannerHeadline(updated.getBannerHeadline());
             if (updated.getStartingPrice() != null) existing.setStartingPrice(updated.getStartingPrice());
             if (updated.getSection() != null) existing.setSection(updated.getSection());
+            if (updated.getHasTwoPhotos() != null) existing.setHasTwoPhotos(updated.getHasTwoPhotos());
             return categoryRepository.save(existing);
         }).orElseGet(() -> {
             updated.setId(id);
