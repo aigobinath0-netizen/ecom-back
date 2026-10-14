@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class ReviewController {
 
     @Autowired
@@ -21,6 +21,7 @@ public class ReviewController {
 
     @PostMapping
     public Review createReview(@RequestBody Review review) {
+        review.setId(null); // Ensure new entity auto-generation
         return reviewRepository.save(review);
     }
 
@@ -28,6 +29,7 @@ public class ReviewController {
     public Review updateReview(@PathVariable String id, @RequestBody Review updated) {
         Long numericId = parseLongId(id);
         if (numericId == null) {
+            updated.setId(null);
             return reviewRepository.save(updated);
         }
         return reviewRepository.findById(numericId).map(review -> {
@@ -54,7 +56,7 @@ public class ReviewController {
     public void deleteReview(@PathVariable String id) {
         Long numericId = parseLongId(id);
         if (numericId != null) {
-            reviewRepository.deleteById(numericId);
+            reviewRepository.findById(numericId).ifPresent(reviewRepository::delete);
         }
     }
 

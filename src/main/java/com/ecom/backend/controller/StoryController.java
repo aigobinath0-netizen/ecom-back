@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/stories")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class StoryController {
     
     @Autowired
@@ -22,6 +22,7 @@ public class StoryController {
 
     @PostMapping
     public Story createStory(@RequestBody Story story) {
+        story.setId(null); // Ensure new entity auto-generation
         if (story.getImages() == null) {
             story.setImages(new java.util.ArrayList<>());
         }
@@ -39,11 +40,13 @@ public class StoryController {
     public Story updateStory(@PathVariable String id, @RequestBody Story updated) {
         Long numericId = parseLongId(id);
         if (numericId == null) {
+            updated.setId(null);
             return storyRepository.save(updated);
         }
         return storyRepository.findById(numericId).map(story -> {
             if (updated.getName() != null) story.setName(updated.getName());
             if (updated.getImg() != null) story.setImg(updated.getImg());
+            if (updated.getTime() != null) story.setTime(updated.getTime());
             if (updated.getImages() != null) story.setImages(updated.getImages());
             return storyRepository.save(story);
         }).orElseGet(() -> {
@@ -56,7 +59,7 @@ public class StoryController {
     public void deleteStory(@PathVariable String id) {
         Long numericId = parseLongId(id);
         if (numericId != null) {
-            storyRepository.deleteById(numericId);
+            storyRepository.findById(numericId).ifPresent(storyRepository::delete);
         }
     }
 
