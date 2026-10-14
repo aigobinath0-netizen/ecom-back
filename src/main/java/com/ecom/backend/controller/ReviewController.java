@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping(value = "/api/reviews", produces = "application/json")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class ReviewController {
 
@@ -19,13 +19,13 @@ public class ReviewController {
         return reviewRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public Review createReview(@RequestBody Review review) {
-        review.setId(null); // Ensure new entity auto-generation
+        review.setId(null);
         return reviewRepository.save(review);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = "application/json")
     public Review updateReview(@PathVariable String id, @RequestBody Review updated) {
         Long numericId = parseLongId(id);
         if (numericId == null) {

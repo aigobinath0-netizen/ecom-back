@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/stories")
+@RequestMapping(value = "/api/stories", produces = "application/json")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class StoryController {
     
@@ -20,9 +20,9 @@ public class StoryController {
         return storyRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public Story createStory(@RequestBody Story story) {
-        story.setId(null); // Ensure new entity auto-generation
+        story.setId(null);
         if (story.getImages() == null) {
             story.setImages(new java.util.ArrayList<>());
         }
@@ -36,7 +36,7 @@ public class StoryController {
         return storyRepository.save(story);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = "application/json")
     public Story updateStory(@PathVariable String id, @RequestBody Story updated) {
         Long numericId = parseLongId(id);
         if (numericId == null) {

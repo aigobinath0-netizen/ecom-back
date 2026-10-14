@@ -22,27 +22,7 @@ public class Story {
     private List<String> images = new ArrayList<>();
 
     public Long getId() { return id; }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // Lenient setter: if Jackson or client sends a String like "story-123", cleanly extract number or null
-    public void setId(Object id) {
-        if (id instanceof Number) {
-            this.id = ((Number) id).longValue();
-        } else if (id instanceof String) {
-            try {
-                String clean = ((String) id).replaceAll("[^0-9]", "");
-                this.id = clean.isEmpty() ? null : Long.parseLong(clean);
-            } catch (Exception e) {
-                this.id = null;
-            }
-        } else {
-            this.id = null;
-        }
-    }
-
+    public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public String getImg() { return img; }
